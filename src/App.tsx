@@ -30,7 +30,7 @@ export default function App() {
 */
 
 
-
+/*
 import {useState} from "react";
 
 interface Lenguaje {
@@ -65,11 +65,62 @@ export default function App(){
                     </li>)}
             </ul>
 
-            {visibles.length === 0 ? (<p>No hay resultados</p>) : (<p className="muted">Mostrando: {visibles.length} lenguajes</p>)}
+            {visibles.length === 0 ? <p>No hay resultados</p> : <p className="muted">Mostrando: {visibles.length} lenguajes</p>}
+        </div>
+    )
+}
+*/
+
+/*
+import {useState} from 'react';
+
+interface Persona {
+    id: number,
+    nombre: string,
+    apellido: string,
+    edad: number
+}
+
+const personas:Persona[] = [
+    {id:1, nombre:'Facundo', apellido: 'Citera', edad:29},
+    {id:2, nombre:'Julian', apellido: 'Caudis', edad:28},
+    {id:3, nombre:'Nicolás', apellido: 'Valdez', edad:32},
+    {id:4, nombre:'Celina', apellido: 'Vila', edad:30},
+    {id:5, nombre:'Adolfo', apellido: 'Vera', edad:21},
+    {id:6, nombre:'Mateo', apellido: 'Mujica', edad:20},
+    {id:7, nombre:'Fausto', apellido: 'Rodriguez', edad:19},
+    {id:8, nombre:'Alvaro', apellido: 'Scarafia', edad:22},
+    {id:9, nombre:'Paula', apellido: 'Pérez', edad:18},
+    {id:10, nombre:'Sofía', apellido: 'Lechman', edad:23}
+]
+
+function App() {
+
+    const [soloMenores, setSoloMenores] = useState<boolean>(false); 
+
+    const listaVisible = soloMenores ? (personas.filter((p) => p.edad < 25)) : personas;
+
+    return (
+        <div>
+            <label>
+                <input type="checkbox" onChange={(e) => setSoloMenores(e.target.checked)}/>
+                {" "} Ver Menores de 25
+            </label>
+            <ul style={{justifyItems:"left"}}>
+                {listaVisible.map((p) => 
+                    <li key={p.id}>{p.nombre} - {p.apellido} {p.edad}</li>
+                )}
+            </ul>
+
+            {listaVisible.length === 0 ?
+             <p>No hay personas Mayores a 25</p> : <p>{listaVisible.length}</p>
+            }
         </div>
     )
 }
 
+export default App;
+*/
 
 /*
 import { useState, useEffect } from "react";
