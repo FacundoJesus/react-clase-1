@@ -30,7 +30,7 @@ export default function App() {
 */
 
 
-/*
+
 import {useState} from "react";
 
 interface Lenguaje {
@@ -51,7 +51,7 @@ export default function App(){
 
     const [soloTipados, setSoloTipados] = useState<boolean>(false)
 
-    const visibles = soloTipados ? lenguajes.filter((l) => l.tipado) : lenguajes;
+    const visibles = (soloTipados) ? (lenguajes.filter((l) => l.tipado)) : lenguajes;
 
     return (
         <div>
@@ -61,16 +61,17 @@ export default function App(){
             </label>
             <ul style={{justifyItems:"left"}}>
                 {visibles.map((leng) => 
-                    <li key={leng.id}>{leng.id} {leng.nombre} {leng.tipado ? <strong>{"(Tipado)"}</strong> : <strong>{"(No Tipado)"}</strong>}</li>)}
-
+                    <li key={leng.id}>{leng.id} {leng.nombre} {leng.tipado ?<strong>{"(Tipado)"}</strong> : <strong>{"(No Tipado)"}</strong>}
+                    </li>)}
             </ul>
 
             {visibles.length === 0 ? (<p>No hay resultados</p>) : (<p className="muted">Mostrando: {visibles.length} lenguajes</p>)}
         </div>
     )
 }
-*/
 
+
+/*
 import { useState, useEffect } from "react";
 
 export default function App() {
@@ -101,3 +102,4 @@ export default function App() {
         </div>
     )
 }
+*/
