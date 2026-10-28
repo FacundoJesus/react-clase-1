@@ -6,6 +6,8 @@ export default function App() {
     const [nombre, setNombre] = useState<string>("");
     const [mensaje, setMensaje] = useState<string>("");
 
+    //Cada evento tiene su tipo: SubmitEvent para enviar el formulario.
+    // FormEvent aparece en muchos tutoriales, pero esta deprecado
     function manejarEnvio(e:SubmitEvent){
         console.log("EVENTO:",e);
         e.preventDefault();
@@ -23,7 +25,8 @@ export default function App() {
             <input value={nombre} onChange={manejarCambio} placeholder="Ingrese su nombre"/>
             <button type="submit" disabled={nombre.trim()===""}>Enviar</button>
             <p className="muted">Estás escribiendo: {nombre.trim() || "(nada todavía)"}</p>
-            {mensaje && <h3>{mensaje}</h3>}
+            {mensaje &&
+             <h3>{mensaje}</h3>}
         </form>
     )
 }
@@ -130,17 +133,19 @@ export default function App() {
     const [segundos, setSegundos] = useState<number>(0);
     const [corriendo, setCorriendo] = useState<boolean>(false);
 
+    // useEffect: Hook que tiene 2 partes: funcion y array de dependencias
+    // useEffect(() => {}, [])
     useEffect(() => {
-        if (!corriendo) {
-            return;
-        }
+        if (!corriendo) return; // si esta pausado, no hacemos nada
 
         const id = setInterval(() => {
             setSegundos((s) => s + 1);
         }, 1000);
 
-        return () => clearInterval(id);
-    },[corriendo]);
+        return () => clearInterval(id); // Funcion de limpieza (opcional)
+        
+    }, [corriendo]); // Se vuelve a ejecutar cuando cambia "corriendo"
+
 
     return (
         <div>
@@ -153,3 +158,4 @@ export default function App() {
         </div>
     )
 }
+
