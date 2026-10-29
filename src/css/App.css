@@ -4,7 +4,7 @@
 }
 
 .card {
-    border: 1px, solid black;
+    border: 1px, solid dimgray;
     border-radius: 12px;
     padding: 20px;
 }
@@ -12,5 +12,11 @@
 .card-button {
     background-color:  #0369a1;
     color: #e2e8f0;
+}
+
+.card-text {
+    text-align: justify;
+    color:dimgray;
+    
 }
 

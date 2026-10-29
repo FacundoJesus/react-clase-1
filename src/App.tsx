@@ -242,7 +242,6 @@ function App() {
                 Se transforma en llamadas a funciones de React.
             </p>}
             
-    
         </div>
     )
 
