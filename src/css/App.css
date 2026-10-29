@@ -1,0 +1,16 @@
+* {
+    padding: 0;
+    margin: 10px;
+}
+
+.card {
+    border: 1px, solid black;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.card-button {
+    background-color:  #0369a1;
+    color: #e2e8f0;
+}
+

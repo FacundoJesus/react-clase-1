@@ -161,7 +161,8 @@ export default function App() {
 }
 */
 
-// EJERCICIO 1
+/*
+// ----------------------- EJERCICIO 1 --------------------------------
 interface ProductoProps {
   nombre: string;
   precio: number;
@@ -192,5 +193,58 @@ export default function App() {
     </div>
   );
 }
+*/
+
+/*
+// ----------------------- EJERCICIO 2 --------------------------------
+import {useState} from "react";
+
+function App() {
+
+    const [contador, setContador] = useState<number>(0);
+
+    return(
+        <div>
+            <h3>{contador}</h3>
+            <button disabled={contador === 0} onClick={() => setContador((c) => c-1)}>-</button>
+            {" "}
+            <button disabled={contador === 10} onClick={() => setContador((c) => c+1)}>+</button>
+            {" "}
+            <button onClick={() => setContador(0)}>Reiniciar</button>
+
+            {contador === 10 &&
+                <p>Llegaste al máximo</p>
+            }
+        </div>
+    )
+
+}
+export default App;
+*/
 
 
+// ----------------------- EJERCICIO 3 --------------------------------
+import './css/App.css';
+import {useState} from "react";
+
+function App() {
+    
+    const [visible, setVisible] = useState<boolean>(false);
+
+    return (
+        <div className="card">
+            <h2 className="card-title">¿Qué es JSX?</h2>
+            <button onClick={() => setVisible(!visible)} className="card-button" type="button">
+                {visible ? "Ocultar respuesta" : "Mostrar respuesta"}</button>
+
+            {visible && <p className="card-text">
+                Una sintaxis que permite escribir estructura parecida a HTML dentro de JavaScript. 
+                Se transforma en llamadas a funciones de React.
+            </p>}
+            
+    
+        </div>
+    )
+
+}
+export default App;
