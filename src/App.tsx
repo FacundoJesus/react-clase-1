@@ -222,7 +222,7 @@ function App() {
 export default App;
 */
 
-
+/*
 // ----------------------- EJERCICIO 3 --------------------------------
 import './css/App.css';
 import {useState} from "react";
@@ -246,4 +246,97 @@ function App() {
     )
 
 }
+export default App;
+*/
+
+/*
+// ----------------------- EJERCICIO 4 --------------------------------
+import {useState} from 'react';
+import type { ChangeEvent } from 'react';
+
+function App() {
+    
+    const [celsius, setCelsius] = useState<string>('');
+
+    // Calculamos los valores directamente en cada renderizado (sin usar un segundo useState)
+    const celsiusNumber = Number(celsius);
+    const fahrenheit = celsius ? (celsiusNumber * 9) / 5 + 32 : 0;
+
+    function convertToFahrenheit(e:ChangeEvent<HTMLInputElement>){
+        setCelsius(e.target.value);
+    }
+
+    return(
+        <div>
+            <input type='text' value={celsius} onChange={convertToFahrenheit} 
+            placeholder='Ingrese grados Celsius'/>
+
+            <h3>{fahrenheit} ºF</h3>
+
+            {celsiusNumber > 30 && <p>Hace calor</p>}
+        </div>
+    )
+}
+export default App;
+*/
+
+
+// ----------------------- EJERCICIO 5 --------------------------------
+import { useState } from "react";
+import type { ChangeEvent} from "react";
+
+// Definimos la estructura de cada ítem de la lista
+interface Item {
+  id: number;
+  name: string;
+}
+
+function App() {
+
+    const [input, setInput] = useState<string>('');
+    const [items, setItem] = useState<Item[]>([]);
+
+    function manejarCambio(e: ChangeEvent<HTMLInputElement>) {
+        setInput(e.target.value);
+    }
+
+    function agregarItem() {
+        if (input.trim() === '') return;
+
+        const newItem: Item = {
+            id: Date.now(),
+            name: input.trim()
+        };
+
+        setItem([...items, newItem]);
+        setInput(''); 
+    }
+
+    function eliminarItem(id:number) {
+        setItem(items.filter(i=> i.id !== id));
+    }
+
+    
+    return (
+        <div>
+            <h2>Lista de compras</h2>
+            <input value={input} onChange={manejarCambio} type='text' placeholder="Ej. yerba"/>
+
+            <button onClick={agregarItem}>Agregar</button>
+
+            {items.length === 0 ? (
+                <p>No hay nada para comprar</p>
+            ) : (
+                <ul>
+                    {items.map((item) => (
+                        <li key={item.id}>{item.name} {' '}
+                            <button onClick={() => eliminarItem(item.id)}>Eliminar</button>
+                        </li>
+                ))}
+                </ul>
+            )}
+        </div>
+    )
+}
+
 export default App;
