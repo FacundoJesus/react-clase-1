@@ -280,55 +280,55 @@ function App() {
 export default App;
 */
 
-
+/*
 // ----------------------- EJERCICIO 5 --------------------------------
 import { useState } from "react";
 import type { ChangeEvent} from "react";
 
 // Definimos la estructura de cada ítem de la lista
-interface Item {
+interface Producto {
   id: number;
   name: string;
 }
 
 function App() {
 
-    const [input, setInput] = useState<string>('');
-    const [items, setItem] = useState<Item[]>([]);
+    const [producto, setProducto] = useState<string>('');
+    const [lista, setLista] = useState<Producto[]>([]);
 
     function manejarCambio(e: ChangeEvent<HTMLInputElement>) {
-        setInput(e.target.value);
+        setProducto(e.target.value);
     }
 
     function agregarItem() {
-        if (input.trim() === '') return;
+        if (producto.trim() === '') return;
 
-        const newItem: Item = {
+        const newItem: Producto = {
             id: Date.now(),
-            name: input.trim()
+            name: producto.trim()
         };
 
-        setItem([...items, newItem]);
-        setInput(''); 
+        setLista([...lista, newItem]);
+        setProducto(''); 
     }
 
     function eliminarItem(id:number) {
-        setItem(items.filter(i=> i.id !== id));
+        setLista(lista.filter(i=> i.id !== id));
     }
 
     
     return (
         <div>
             <h2>Lista de compras</h2>
-            <input value={input} onChange={manejarCambio} type='text' placeholder="Ej. yerba"/>
+            <input value={producto} onChange={manejarCambio} type='text' placeholder="Ej. yerba"/>
 
             <button onClick={agregarItem}>Agregar</button>
 
-            {items.length === 0 ? (
+            {lista.length === 0 ? (
                 <p>No hay nada para comprar</p>
             ) : (
                 <ul>
-                    {items.map((item) => (
+                    {lista.map((item) => (
                         <li key={item.id}>{item.name} {' '}
                             <button onClick={() => eliminarItem(item.id)}>Eliminar</button>
                         </li>
@@ -338,5 +338,88 @@ function App() {
         </div>
     )
 }
-
 export default App;
+*/
+
+/*
+// ----------------------- EJERCICIO 6 --------------------------------
+import {useState} from 'react';
+import type { ChangeEvent} from "react";
+
+const lenguajes = [
+    {id:1, lenguaje:'Javascript'},
+    {id:2, lenguaje:'React'},
+    {id:3, lenguaje:'Typescript'},
+    {id:4, lenguaje:'Java'},
+    {id:5, lenguaje:'C#'},
+    {id:6, lenguaje:'Python'},
+    {id:7, lenguaje:'HTML'},
+    {id:8, lenguaje:'CSS'},
+    {id:9, lenguaje:'Cobol'},        
+    {id:10, lenguaje:'Php'},   
+]
+
+function App() {
+
+    const [busqueda, setBusqueda] = useState<string>('');
+    
+
+    function buscarPalabra(e: ChangeEvent<HTMLInputElement>) {
+        setBusqueda(e.target.value);
+    }
+
+    const lenguajesFiltrados = lenguajes.filter((i) => 
+        i.lenguaje.toLowerCase().includes(busqueda.toLowerCase())
+    );
+
+    return (
+        <div>
+            <input value={busqueda.trim()} onChange={buscarPalabra} type='text' placeholder='Ingrese el lenguaje'/>
+
+            {busqueda && <p>{lenguajesFiltrados.length} resultados</p>}
+
+            <ul>
+                {lenguajesFiltrados.map((item) =>
+                    <li key={item.id}>{item.lenguaje}</li>
+                )}
+            </ul>
+
+        </div>
+    )
+}
+export default App;
+*/
+
+// ----------------------- EJERCICIO 7 --------------------------------
+interface ProductoProps {
+  nombre: string;
+  precio: number;
+  stock: number;
+  oferta: boolean;
+}
+
+// 1. Desestructurar las props en la firma como sugiere la pista
+function Producto({ nombre, precio, stock, oferta }: ProductoProps) {
+  return (
+    <div>
+      <h3>{nombre}</h3>
+      {oferta===true && <h4>Oferta!</h4>}
+      <p>Precio: ${precio}</p>
+      <p>{stock === 0 ? 
+        "Sin stock" : `Stock: ${stock} unidades`}
+      </p>
+    </div>
+  );
+}
+
+// 3. Mostrar el componente tres veces con datos distintos
+export default function App() {
+  return (
+    <div>
+      <h2>Lista de Productos</h2>
+      <Producto nombre="Teclado" precio={45000} stock={12} oferta={true}/>
+      <Producto nombre="Mouse" precio={18000} stock={0} oferta={false}/>
+      <Producto nombre="Monitor" precio={32000} stock={3} oferta={true}/>
+    </div>
+  );
+}
